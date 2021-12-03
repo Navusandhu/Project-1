@@ -104,5 +104,25 @@ data.columns
 df2byWithIncomeBracketAndAgeGroupss = data[['IncomeBracket', 'AgeGroup','MntFruits','MntWines','MntMeatProducts', 'MntFishProducts', 'MntSweetProducts', 'MntGoldProds']]
 df5= df2byWithIncomeBracketAndAgeGroupss.groupby(['IncomeBracket','AgeGroup']).sum().plot.bar()
 df5
+plotGraph1 = data.pivot_table(index='Education',columns='IncomeBracket', values='NumStorePurchases', aggfunc=np.sum)
+plotGraph1.plot(kind='line',title='Graduates in High Income group,followed by Graduates in Medium Income Group.',figsize=(5,6))
+
+plotGraph2 = data.pivot_table(index='AgeGroup',columns='IncomeBracket', values='NumStorePurchases', aggfunc=np.sum)
+plotGraph2.plot(kind='line',title='Seniors in High Income group,followed by 40-50 age group in Medium Income.',figsize=(5,6))
+
+plotGraph3 = data.pivot_table(index='AgeGroup',columns='IncomeBracket', values=['NumDealsPurchases','NumWebPurchases','NumCatalogPurchases','NumStorePurchases'],aggfunc=np.sum)
+plotGraph3.plot(kind='line',title='Problem : Participation is less by people in the age group of less than 40 yrs.',figsize=(20,12))
+
+plotGraph4 = data.pivot_table(index='FamilyStatus',columns='IncomeBracket', values='NumWebPurchases', aggfunc=np.sum)
+plotGraph4.plot(kind='bar',title='Sum of NumWebPurchases by family staus in different income bracket',figsize=(5,6))
+
+plotGraph5 = data.pivot_table(index='IncomeBracket', values=['NumWebPurchases','NumCatalogPurchases','NumStorePurchases'], aggfunc=np.sum)
+plotGraph5.plot(kind='bar',title='Sum of WebPurchases,CataloguePurchases,StorePurchaces According to income bracket',figsize=(5,6))
+
+plotGraph6 = data.pivot_table(index='FamilyStatus', values=['NumWebPurchases','NumCatalogPurchases','NumStorePurchases'], aggfunc=np.sum)
+plotGraph6.plot(kind='bar',title='Sum of WebPurchases,CataloguePurchases,StorePurchaces According to family status',figsize=(5,6))
+
+plotGraph7 = data.pivot_table(index='AgeGroup', values=['NumWebPurchases','NumCatalogPurchases','NumStorePurchases'], aggfunc=np.sum)
+plotGraph7.plot(kind='bar',title='Sum of WebPurchases,CataloguePurchases,StorePurchaces According to Age Group',figsize=(5,6))
 
 
